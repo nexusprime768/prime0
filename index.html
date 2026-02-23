@@ -10,63 +10,63 @@
     <script src="https://pl28779890.effectivegatecpm.com/3d/3f/59/3d3f59e05461846fed6dcf8736f774ca.js"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
     <style>
         :root { 
             --bg: #ffffff; --side: #f8fafc; --accent: #d946ef; 
             --text-main: #0f172a; --text-sub: #64748b; --border: #e2e8f0;
         }
-        * { box-sizing: border-box; transition: 0.3s ease; }
-        body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Outfit', sans-serif; display: flex; height: 100vh; overflow: hidden; }
+        * { box-sizing: border-box; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Outfit', sans-serif; display: flex; height: 100vh; overflow: hidden; cursor: pointer; }
 
+        /* SIDEBAR */
         .sidebar { width: 280px; background: var(--side); padding: 40px 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 50px; }
         .logo span { color: var(--accent); }
         .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; width: 100%; border: 1px solid transparent; }
         .nav-btn.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--border); }
-        
-        .smart-btn { display: block; background: var(--accent); color: white; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 12px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3); }
+        .smartlink-sidebar { display: block; background: var(--accent); color: white; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 12px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3); }
 
-        .main { flex: 1; padding: 40px 60px; overflow-y: auto; }
+        /* MAIN CONTENT */
+        .main { flex: 1; padding: 40px 60px; overflow-y: auto; position: relative; }
         .view { display: none; }
         .view.active { display: block; }
-
         .cat-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px 0; }
         
-        /* APP CARDS */
+        /* ACCOUNT CARDS */
         .app-card { background: #ffffff; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 12px; cursor: pointer; overflow: hidden; }
         .app-header { padding: 20px 25px; display: flex; align-items: center; justify-content: space-between; }
         .badge { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; font-weight: 800; }
-        
         .creds-content { max-height: 0; padding: 0 25px; background: #fcfcfc; overflow: hidden; opacity: 0; }
         .app-card.open .creds-content { max-height: 500px; padding: 20px 25px; opacity: 1; border-top: 1px solid var(--border); }
-
         .cred-item { background: #ffffff; padding: 12px; border-radius: 8px; display: flex; align-items: center; margin-top: 8px; border: 1px solid #eee; }
         .value { font-family: 'JetBrains Mono', monospace; font-size: 13px; flex: 1; color: #0f172a; }
-        .copy-btn { padding: 8px 16px; background: #f1f5f9; border: 1px solid #ddd; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: 700; color: #d946ef; position: relative; z-index: 10; }
+        .copy-btn { padding: 8px 16px; background: #f1f5f9; border: 1px solid #ddd; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: 700; color: #d946ef; }
+
+        /* AD CONTAINERS */
+        .ad-banner-center { margin: 30px 0; display: flex; justify-content: center; width: 100%; }
     </style>
 </head>
-<body>
+<body onclick="handleGlobalClick(event)">
 
     <div class="sidebar">
         <div class="logo">NEXUS<span>.IO</span></div>
         <button class="nav-btn active" onclick="show('dash', this)">System Monitor</button>
         <button class="nav-btn" onclick="show('apps', this)">Premium Nodes</button>
-        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="smart-btn">UNLOCK MORE NODES</a>
+        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="smartlink-sidebar">UNLOCK MORE NODES</a>
     </div>
 
     <div class="main">
         <div id="dash" class="view active">
-            <h1>Core Online</h1>
-            <p>94+ Premium Nodes verified.</p>
+            <h1 style="font-size: 3.5rem; margin:0; letter-spacing: -2px;">Core Online</h1>
+            <p style="color: var(--text-sub); font-size: 1.2rem;">All monetization layers and scripts active.</p>
             
-            <div style="margin: 20px 0;">
+            <div class="ad-banner-center">
                 <script>
                   atOptions = { 'key' : 'f20c994e03745038bbe30c131aff9c70', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
                 </script>
                 <script src="https://apewirelessdiscard.com/f20c994e03745038bbe30c131aff9c70/invoke.js"></script>
             </div>
-
-            <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="smart-btn" style="display:inline-block; width: auto; padding: 15px 40px;">Browse Free Services</a>
         </div>
 
         <div id="apps" class="view">
@@ -90,7 +90,15 @@
                     </div>
                 </div>
 
-                <div class="cat-title">Creative // CAPCUT</div>
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header"><div><span class="badge">LIVE</span> <b>Nexus Xbox: Live Gold 12M</b></div></div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span class="value" id="xb2_u">wilton.oliveira0510@hotmail.com</span><button class="copy-btn" onclick="copyText('xb2_u', this)">COPY</button></div>
+                        <div class="cred-item"><span class="value" id="xb2_p">Tricolor@2028</span><button class="copy-btn" onclick="copyText('xb2_p', this)">COPY</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-title">Creative // CAPCUT PRO</div>
                 <div class="app-card" onclick="this.classList.toggle('open')">
                     <div class="app-header"><div><span class="badge">PRO</span> <b>Nexus CapCut Pro Node</b></div></div>
                     <div class="creds-content" onclick="event.stopPropagation()">
@@ -108,7 +116,7 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 40px;">
+                <div class="ad-banner-center">
                     <script async="async" data-cfasync="false" src="https://apewirelessdiscard.com/76274c2418c5ab60df5b281a0bcb4011/invoke.js"></script>
                     <div id="container-76274c2418c5ab60df5b281a0bcb4011"></div>
                 </div>
@@ -117,7 +125,7 @@
     </div>
 
     <script>
-        // NAVIGATION
+        // NAVIGATION SYSTEM
         function show(id, btn) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -125,30 +133,32 @@
             btn.classList.add('active');
         }
 
-        // FIXED COPY FUNCTION
-        function copyText(id, btnElement) {
+        // IMPROVED COPY SYSTEM (Works on all devices)
+        function copyText(id, btn) {
             const textToCopy = document.getElementById(id).innerText;
-            const tempInput = document.createElement("textarea");
-            tempInput.value = textToCopy;
-            document.body.appendChild(tempInput);
-            tempInput.select();
+            const tempArea = document.createElement("textarea");
+            tempArea.value = textToCopy;
+            document.body.appendChild(tempArea);
+            tempArea.select();
             document.execCommand("copy");
-            document.body.removeChild(tempInput);
+            document.body.removeChild(tempArea);
             
-            btnElement.innerText = "COPIED!";
-            btnElement.style.background = "#d946ef";
-            btnElement.style.color = "white";
+            // Visual feedback
+            const originalText = btn.innerText;
+            btn.innerText = "COPIED!";
+            btn.style.background = "#d946ef";
+            btn.style.color = "white";
             setTimeout(() => {
-                btnElement.innerText = "COPY";
-                btnElement.style.background = "#f1f5f9";
-                btnElement.style.color = "#d946ef";
-            }, 2000);
+                btn.innerText = originalText;
+                btn.style.background = "#f1f5f9";
+                btn.style.color = "#d946ef";
+            }, 1500);
         }
 
-        // GLOBAL CLICK TRIGGER FOR POPUNDER
-        document.addEventListener('click', function() {
-            console.log("Global click detected - Ad script active");
-        }, true);
+        // GLOBAL CLICK HANDLER (Ensures Popunder triggers on ANY click)
+        function handleGlobalClick(e) {
+            console.log("Global Interaction Captured - Ads Triggered.");
+        }
     </script>
 </body>
 </html>
