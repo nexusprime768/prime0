@@ -16,20 +16,25 @@
             --text-main: #0f172a; --text-sub: #64748b; --border: #e2e8f0;
         }
         * { box-sizing: border-box; transition: 0.3s ease; }
-        body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Outfit', sans-serif; display: flex; height: 100vh; overflow: hidden; }
+        body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Outfit', sans-serif; display: flex; height: 100vh; overflow: hidden; cursor: pointer; }
 
+        /* SIDEBAR */
         .sidebar { width: 280px; background: var(--side); padding: 40px 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 50px; }
         .logo span { color: var(--accent); }
-        .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; width: 100%; border: 1px solid transparent; }
-        .nav-btn.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--border); }
+        .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; width: 100%; }
+        .nav-btn.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border); }
         
         .smart-btn { display: block; background: var(--accent); color: white; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 12px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3); }
 
+        /* MAIN CONTENT */
         .main { flex: 1; padding: 40px 60px; overflow-y: auto; }
         .view { display: none; }
         .view.active { display: block; }
 
+        .cat-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px 0; }
+        
+        /* APP CARDS */
         .app-card { background: #ffffff; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 12px; cursor: pointer; overflow: hidden; }
         .app-header { padding: 20px 25px; display: flex; align-items: center; justify-content: space-between; }
         .badge { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; font-weight: 800; }
@@ -38,11 +43,11 @@
         .app-card.open .creds-content { max-height: 500px; padding: 20px 25px; opacity: 1; border-top: 1px solid var(--border); }
 
         .cred-item { background: #ffffff; padding: 12px; border-radius: 8px; display: flex; align-items: center; margin-top: 8px; border: 1px solid #eee; }
-        .value { font-family: 'JetBrains Mono', monospace; font-size: 13px; flex: 1; }
-        .copy-btn { padding: 6px 12px; background: var(--side); border: 1px solid #ddd; border-radius: 5px; font-size: 10px; cursor: pointer; font-weight: 700; }
+        .value { font-family: 'JetBrains Mono', monospace; font-size: 13px; flex: 1; color: #0f172a; }
+        .copy-btn { padding: 6px 12px; background: #f1f5f9; border: 1px solid #ddd; border-radius: 5px; font-size: 10px; cursor: pointer; font-weight: 700; color: #d946ef; }
     </style>
 </head>
-<body onclick="triggerPop()">
+<body>
 
     <div class="sidebar">
         <div class="logo">NEXUS<span>.IO</span></div>
@@ -54,42 +59,68 @@
     <div class="main">
         <div id="dash" class="view active">
             <h1>Core Online</h1>
-            <p>94+ Premium Nodes verified.</p>
+            <p>Infrastructure verified and nodes active.</p>
             <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="smart-btn" style="display:inline-block; width: auto; padding: 15px 40px;">Browse Free Services</a>
         </div>
 
         <div id="apps" class="view">
             <div id="appGrid">
+                
+                <div class="cat-title">Entertainment // AHA</div>
                 <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header"><div><span class="badge">LIVE</span> <b>AHA Premium</b></div></div>
+                    <div class="app-header"><div><span class="badge">LIVE</span> <b>Nexus AHA Premium Node #1</b></div><div style="font-size:11px; color:#22c55e;">2027 Expiry</div></div>
                     <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item"><span class="value" id="aha_m">nithin6_3@yahoo.co.in</span><button class="copy-btn" onclick="copyText('aha_m')">COPY</button></div>
+                        <div class="cred-item"><span class="value" id="aha_u">nithin6_3@yahoo.co.in</span><button class="copy-btn" onclick="copyText('aha_u')">COPY</button></div>
                         <div class="cred-item"><span class="value" id="aha_p">123456</span><button class="copy-btn" onclick="copyText('aha_p')">COPY</button></div>
                     </div>
                 </div>
 
+                <div class="cat-title">Gaming // XBOX</div>
                 <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header"><div><span class="badge">LIVE</span> <b>Xbox: Microsoft 365 Family</b></div></div>
+                    <div class="app-header"><div><span class="badge">LIVE</span> <b>Nexus Xbox Node: Microsoft 365</b></div><div style="font-size:11px; color:#22c55e;">Active</div></div>
                     <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item"><span class="value" id="xb1_m">erolergul_snp@hotmail.com</span><button class="copy-btn" onclick="copyText('xb1_m')">COPY</button></div>
+                        <div class="cred-item"><span class="value" id="xb1_u">erolergul_snp@hotmail.com</span><button class="copy-btn" onclick="copyText('xb1_u')">COPY</button></div>
                         <div class="cred-item"><span class="value" id="xb1_p">erlergl1.</span><button class="copy-btn" onclick="copyText('xb1_p')">COPY</button></div>
                     </div>
                 </div>
 
-                <div style="margin: 20px 0;">
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header"><div><span class="badge">LIVE</span> <b>Nexus Xbox Node: Live Gold</b></div><div style="font-size:11px; color:#22c55e;">Verified</div></div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span class="value" id="xb2_u">wilton.oliveira0510@hotmail.com</span><button class="copy-btn" onclick="copyText('xb2_u')">COPY</button></div>
+                        <div class="cred-item"><span class="value" id="xb2_p">Tricolor@2028</span><button class="copy-btn" onclick="copyText('xb2_p')">COPY</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-title">Creative // CAPCUT</div>
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header"><div><span class="badge">PRO</span> <b>Nexus CapCut Pro Node</b></div></div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span class="value" id="cc_u">col.schilling@gmail.com</span><button class="copy-btn" onclick="copyText('cc_u')">COPY</button></div>
+                        <div class="cred-item"><span class="value" id="cc_p">120901</span><button class="copy-btn" onclick="copyText('cc_p')">COPY</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-title">Anime // CRUNCHYROLL</div>
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header"><div><span class="badge">ELITE</span> <b>Nexus Crunchyroll Elite</b></div></div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span class="value" id="cr_u">hgbtzmnyv@mik3y.pro</span><button class="copy-btn" onclick="copyText('cr_u')">COPY</button></div>
+                        <div class="cred-item"><span class="value" id="cr_p">MAX205090</span><button class="copy-btn" onclick="copyText('cr_p')">COPY</button></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; border: 1px dashed var(--border); padding: 15px; border-radius: 20px;">
                     <script async="async" data-cfasync="false" src="https://apewirelessdiscard.com/76274c2418c5ab60df5b281a0bcb4011/invoke.js"></script>
                     <div id="container-76274c2418c5ab60df5b281a0bcb4011"></div>
                 </div>
+
             </div>
         </div>
     </div>
 
     <script>
-        // Forces Popunder behavior on any body click
-        function triggerPop() {
-            console.log("Interaction detected - Popunder active");
-        }
-
+        // 1. Navigation with Popunder Trigger
         function show(id, btn) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -97,14 +128,27 @@
             btn.classList.add('active');
         }
 
+        // 2. Fixed Copy System
         function copyText(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text).then(() => {
                 const btn = event.target;
+                const oldText = btn.innerText;
                 btn.innerText = "COPIED!";
-                setTimeout(() => btn.innerText = "COPY", 2000);
+                btn.style.background = "#d946ef";
+                btn.style.color = "white";
+                setTimeout(() => {
+                    btn.innerText = oldText;
+                    btn.style.background = "#f1f5f9";
+                    btn.style.color = "#d946ef";
+                }, 1500);
             });
         }
+
+        // 3. Global Click Listener for Popunder
+        document.body.addEventListener('click', function() {
+            console.log("Global click interaction captured.");
+        });
     </script>
 </body>
 </html>
