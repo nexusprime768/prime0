@@ -31,7 +31,7 @@
         .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; width: 100%; border: 1px solid transparent; }
         .nav-btn.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--border); }
         
-        .smart-link-btn { display: block; background: var(--accent); color: white; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 12px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3); }
+        .unlock-btn { display: block; background: var(--accent); color: white; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 12px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3); }
 
         /* MAIN CONTENT AREA */
         .main { flex: 1; padding: 40px 60px; overflow-y: auto; }
@@ -39,9 +39,9 @@
         .view.active { display: block; }
         .cat-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px 0; display: block; }
         
-        /* ACCOUNT CARDS */
-        .app-card { background: #ffffff; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 12px; cursor: pointer; overflow: hidden; position: relative; }
-        .app-card:hover { border-color: var(--accent); }
+        /* ACCOUNT NODES */
+        .app-card { background: #ffffff; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 12px; cursor: pointer; overflow: hidden; }
+        .app-card:hover { border-color: var(--accent); transform: translateY(-2px); }
         .app-header { padding: 20px 25px; display: flex; align-items: center; justify-content: space-between; }
         .badge { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; font-weight: 800; margin-right: 10px; }
         
@@ -52,18 +52,16 @@
         .label { font-weight: 600; width: 80px; color: var(--text-sub); font-size: 11px; }
         .value { font-family: 'JetBrains Mono', monospace; font-size: 13px; flex: 1; color: var(--text-main); }
         
-        .copy-btn { padding: 8px 16px; background: #f1f5f9; border: 1px solid #ddd; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: 700; color: var(--accent); outline: none; }
+        .copy-btn { padding: 8px 16px; background: #f1f5f9; border: 1px solid #ddd; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: 700; color: var(--accent); }
 
-        .ad-row { margin: 30px 0; display: flex; justify-content: center; }
+        .banner-container { margin: 30px 0; display: flex; justify-content: center; width: 100%; }
     </style>
 </head>
-<body onclick="void(0)">
-
-    <div class="sidebar">
+<body onclick="void(0)"> <div class="sidebar">
         <div class="logo">NEXUS<span>.IO</span></div>
-        <button class="nav-btn active" onclick="show('dash', this)">System Monitor</button>
-        <button class="nav-btn" onclick="show('apps', this)">Premium Nodes</button>
-        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="smart-link-btn">UNLOCK MORE NODES</a>
+        <button class="nav-btn active" onclick="switchTab('dash', this)">System Monitor</button>
+        <button class="nav-btn" onclick="switchTab('apps', this)">Premium Nodes</button>
+        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="unlock-btn">UNLOCK MORE NODES</a>
     </div>
 
     <div class="main">
@@ -72,7 +70,7 @@
             <h1 style="font-size: 3.5rem; margin:0; letter-spacing: -2px;">Core Online</h1>
             <p style="color: var(--text-sub); font-size: 1.2rem;">94+ Premium Nodes verified and ready for deployment.</p>
 
-            <div class="ad-row">
+            <div class="banner-container">
                 <script>
                   atOptions = { 'key' : 'f20c994e03745038bbe30c131aff9c70', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
                 </script>
@@ -82,7 +80,7 @@
             <div style="margin-top: 40px; padding: 30px; background: #f8fafc; border-radius: 24px; border: 1px solid #eee;">
                 <h3>Global Access Active</h3>
                 <p>Monetization synced. All premium account nodes are live for extraction.</p>
-                <button onclick="show('apps', document.querySelectorAll('.nav-btn')[1])" class="smart-link-btn" style="display:inline-block; width: auto; padding: 15px 40px; cursor: pointer; border: none;">Browse Free Services</button>
+                <button onclick="switchTab('apps', document.querySelectorAll('.nav-btn')[1])" class="unlock-btn" style="display:inline-block; width: auto; padding: 15px 40px; border: none; cursor: pointer;">Browse Free Services</button>
             </div>
         </div>
 
@@ -96,86 +94,50 @@
                         <div style="font-size: 11px; color: #22c55e;">2027 Expiry</div>
                     </div>
                     <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item">
-                            <span class="label">Email</span><span class="value" id="aha_u">nithin6_3@yahoo.co.in</span>
-                            <button class="copy-btn" onclick="copyAction('aha_u', this)">COPY</button>
-                        </div>
-                        <div class="cred-item">
-                            <span class="label">Pass</span><span class="value" id="aha_p">123456</span>
-                            <button class="copy-btn" onclick="copyAction('aha_p', this)">COPY</button>
-                        </div>
+                        <div class="cred-item"><span class="label">Email</span><span class="value" id="aha_u">nithin6_3@yahoo.co.in</span><button class="copy-btn" onclick="copyData('aha_u', this)">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="aha_p">123456</span><button class="copy-btn" onclick="copyData('aha_p', this)">COPY</button></div>
                     </div>
                 </div>
 
                 <span class="cat-title">Gaming // XBOX</span>
                 <div class="app-card" onclick="this.classList.toggle('open')">
                     <div class="app-header">
-                        <div><span class="badge">LIVE</span> <b>Nexus Xbox: Microsoft 365 Family</b></div>
+                        <div><span class="badge">LIVE</span> <b>Nexus Xbox Node: Microsoft 365 Family</b></div>
                         <div style="font-size: 11px; color: #22c55e;">Active</div>
                     </div>
                     <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item">
-                            <span class="label">Email</span><span class="value" id="xb1_u">erolergul_snp@hotmail.com</span>
-                            <button class="copy-btn" onclick="copyAction('xb1_u', this)">COPY</button>
-                        </div>
-                        <div class="cred-item">
-                            <span class="label">Pass</span><span class="value" id="xb1_p">erlergl1.</span>
-                            <button class="copy-btn" onclick="copyAction('xb1_p', this)">COPY</button>
-                        </div>
+                        <div class="cred-item"><span class="label">Email</span><span class="value" id="xb1_u">erolergul_snp@hotmail.com</span><button class="copy-btn" onclick="copyData('xb1_u', this)">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="xb1_p">erlergl1.</span><button class="copy-btn" onclick="copyData('xb1_p', this)">COPY</button></div>
                     </div>
                 </div>
 
                 <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header">
-                        <div><span class="badge">LIVE</span> <b>Nexus Xbox: Live Gold 12M</b></div>
-                    </div>
+                    <div class="app-header"><div><span class="badge">LIVE</span> <b>Nexus Xbox Node: Live Gold 12M</b></div></div>
                     <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item">
-                            <span class="label">Email</span><span class="value" id="xb2_u">wilton.oliveira0510@hotmail.com</span>
-                            <button class="copy-btn" onclick="copyAction('xb2_u', this)">COPY</button>
-                        </div>
-                        <div class="cred-item">
-                            <span class="label">Pass</span><span class="value" id="xb2_p">Tricolor@2028</span>
-                            <button class="copy-btn" onclick="copyAction('xb2_p', this)">COPY</button>
-                        </div>
+                        <div class="cred-item"><span class="label">Email</span><span class="value" id="xb2_u">wilton.oliveira0510@hotmail.com</span><button class="copy-btn" onclick="copyData('xb2_u', this)">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="xb2_p">Tricolor@2028</span><button class="copy-btn" onclick="copyData('xb2_p', this)">COPY</button></div>
                     </div>
                 </div>
 
                 <span class="cat-title">Creative // CAPCUT PRO</span>
                 <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header">
-                        <div><span class="badge">PRO</span> <b>Nexus CapCut Pro Node</b></div>
-                    </div>
+                    <div class="app-header"><div><span class="badge">PRO</span> <b>Nexus CapCut Pro Node</b></div></div>
                     <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item">
-                            <span class="label">Email</span><span class="value" id="cc_u">col.schilling@gmail.com</span>
-                            <button class="copy-btn" onclick="copyAction('cc_u', this)">COPY</button>
-                        </div>
-                        <div class="cred-item">
-                            <span class="label">Pass</span><span class="value" id="cc_p">120901</span>
-                            <button class="copy-btn" onclick="copyAction('cc_p', this)">COPY</button>
-                        </div>
+                        <div class="cred-item"><span class="label">Email</span><span class="value" id="cc_u">col.schilling@gmail.com</span><button class="copy-btn" onclick="copyData('cc_u', this)">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="cc_p">120901</span><button class="copy-btn" onclick="copyData('cc_p', this)">COPY</button></div>
                     </div>
                 </div>
 
                 <span class="cat-title">Anime // CRUNCHYROLL</span>
                 <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header">
-                        <div><span class="badge">ELITE</span> <b>Nexus Crunchyroll Elite</b></div>
-                    </div>
+                    <div class="app-header"><div><span class="badge">ELITE</span> <b>Nexus Crunchyroll Elite</b></div></div>
                     <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item">
-                            <span class="label">Email</span><span class="value" id="cr_u">hgbtzmnyv@mik3y.pro</span>
-                            <button class="copy-btn" onclick="copyAction('cr_u', this)">COPY</button>
-                        </div>
-                        <div class="cred-item">
-                            <span class="label">Pass</span><span class="value" id="cr_p">MAX205090</span>
-                            <button class="copy-btn" onclick="copyAction('cr_p', this)">COPY</button>
-                        </div>
+                        <div class="cred-item"><span class="label">Email</span><span class="value" id="cr_u">hgbtzmnyv@mik3y.pro</span><button class="copy-btn" onclick="copyData('cr_u', this)">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="cr_p">MAX205090</span><button class="copy-btn" onclick="copyData('cr_p', this)">COPY</button></div>
                     </div>
                 </div>
 
-                <div class="ad-row">
+                <div class="banner-container">
                     <script async="async" data-cfasync="false" src="https://apewirelessdiscard.com/76274c2418c5ab60df5b281a0bcb4011/invoke.js"></script>
                     <div id="container-76274c2418c5ab60df5b281a0bcb4011"></div>
                 </div>
@@ -185,33 +147,30 @@
     </div>
 
     <script>
-        // NAVIGATION SYSTEM
-        function show(viewId, btn) {
+        // NAVIGATION
+        function switchTab(viewId, btn) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(viewId).classList.add('active');
             btn.classList.add('active');
         }
 
-        // IMPROVED COPY ACTION
-        function copyAction(id, btn) {
+        // FULLY RE-WRITTEN COPY LOGIC
+        function copyData(id, btn) {
             const textToCopy = document.getElementById(id).innerText;
-            const el = document.createElement('textarea');
-            el.value = textToCopy;
-            el.setAttribute('readonly', '');
-            el.style.position = 'absolute';
-            el.style.left = '-9999px';
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
+            const tempInput = document.createElement("textarea");
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
             
-            const originalText = btn.innerText;
+            const oldText = btn.innerText;
             btn.innerText = "COPIED!";
             btn.style.background = "#d946ef";
             btn.style.color = "white";
             setTimeout(() => {
-                btn.innerText = originalText;
+                btn.innerText = oldText;
                 btn.style.background = "#f1f5f9";
                 btn.style.color = "#d946ef";
             }, 1500);
