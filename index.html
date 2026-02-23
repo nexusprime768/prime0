@@ -12,40 +12,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --bg: #ffffff; 
-            --side: #f8fafc; 
-            --accent: #d946ef; 
-            --text-main: #0f172a;
-            --text-sub: #64748b;
-            --border: #e2e8f0;
+            --bg: #ffffff; --side: #f8fafc; --accent: #d946ef; 
+            --text-main: #0f172a; --text-sub: #64748b; --border: #e2e8f0;
         }
-
         * { box-sizing: border-box; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Outfit', sans-serif; display: flex; height: 100vh; overflow: hidden; }
 
+        /* SIDEBAR */
         .sidebar { width: 280px; background: var(--side); padding: 40px 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 50px; }
         .logo span { color: var(--accent); }
-        .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; border: 1px solid transparent; width: 100%; }
-        .nav-btn.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--border); }
+        .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; }
+        .nav-btn.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border); }
         
+        /* SMARTLINK BUTTON */
+        .smart-btn { display: block; background: var(--accent); color: white; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 12px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3); }
+
+        /* MAIN CONTENT */
         .main { flex: 1; padding: 40px 60px; overflow-y: auto; }
         .view { display: none; }
         .view.active { display: block; }
 
-        .smart-btn { display: inline-block; background: var(--accent); color: white; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: 800; margin-top: 20px; box-shadow: 0 10px 20px rgba(217, 70, 239, 0.2); }
-
+        .search-input { width: 100%; padding: 15px 25px; border-radius: 15px; border: 1px solid var(--border); font-family: 'Outfit', sans-serif; margin-bottom: 30px; outline: none; }
+        .cat-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px 0; }
+        
+        /* APP CARDS */
         .app-card { background: #ffffff; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 12px; cursor: pointer; overflow: hidden; }
         .app-header { padding: 20px 25px; display: flex; align-items: center; justify-content: space-between; }
         .badge { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; font-weight: 800; }
-        
-        .creds-content { max-height: 0; padding: 0 25px; background: #fcfcfc; overflow: hidden; opacity: 0; }
-        .app-card.open .creds-content { max-height: 500px; padding: 20px 25px 25px 25px; opacity: 1; border-top: 1px solid var(--border); }
+        .creds-content { max-height: 0; padding: 0 25px; background: #fcfcfc; overflow: hidden; opacity: 0; border-top: 0px solid transparent; }
+        .app-card.open .creds-content { max-height: 500px; padding: 20px 25px; opacity: 1; border-top: 1px solid var(--border); }
 
         .cred-item { background: #ffffff; padding: 12px; border-radius: 8px; display: flex; align-items: center; margin-top: 8px; border: 1px solid #eee; }
         .value { font-family: 'JetBrains Mono', monospace; font-size: 13px; flex: 1; }
         .copy-btn { padding: 6px 12px; background: var(--side); border: 1px solid #ddd; border-radius: 5px; font-size: 10px; cursor: pointer; font-weight: 700; }
-        .copy-btn:active { background: var(--accent); color: white; }
     </style>
 </head>
 <body>
@@ -54,35 +54,87 @@
         <div class="logo">NEXUS<span>.IO</span></div>
         <button class="nav-btn active" onclick="show('dash', this)">System Monitor</button>
         <button class="nav-btn" onclick="show('apps', this)">Premium Nodes</button>
-        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="smart-btn" style="font-size: 12px; text-align: center;">UNLOCK MORE NODES</a>
+        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="smart-btn">UNLOCK MORE NODES</a>
     </div>
 
     <div class="main">
         <div id="dash" class="view active">
-            <h1>Core Online</h1>
-            <p>94+ Premium Nodes verified.</p>
-            <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="smart-btn">Browse Free Services</a>
+            <h1 style="font-size: 3.5rem; margin:0; letter-spacing: -2px;">Core Online</h1>
+            <p style="color: var(--text-sub); font-size: 1.2rem;">94+ Premium Nodes verified and ready.</p>
+            <div style="margin-top: 30px;">
+                <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="smart-btn" style="display:inline-block; padding: 15px 40px;">Browse Free Services</a>
+            </div>
         </div>
 
         <div id="apps" class="view">
-            <div class="app-container">
-                <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header">
-                        <div><span class="badge">LIVE</span> <b>Nexus Xbox Node</b></div>
-                    </div>
-                    <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item">
-                            <span class="value" id="xbox_mail">erolergul_snp@hotmail.com</span>
-                            <button class="copy-btn" onclick="copyText('xbox_mail')">COPY</button>
+            <input type="text" class="search-input" placeholder="Search for AHA, Xbox, CapCut..." onkeyup="filterApps()" id="appSearch">
+
+            <div id="appGrid">
+                <div class="cat-wrapper" data-name="aha entertainment">
+                    <div class="cat-title">Entertainment // AHA</div>
+                    <div class="app-card" onclick="this.classList.toggle('open')">
+                        <div class="app-header">
+                            <div><span class="badge">LIVE</span> <b>Nexus AHA Premium Node #1</b></div>
+                            <div style="font-size: 11px; color: #22c55e;">2027 Expiry</div>
                         </div>
-                        <div class="cred-item">
-                            <span class="value" id="xbox_pass">erlergl1.</span>
-                            <button class="copy-btn" onclick="copyText('xbox_pass')">COPY</button>
+                        <div class="creds-content" onclick="event.stopPropagation()">
+                            <div class="cred-item"><span class="value" id="aha_m">nithin6_3@yahoo.co.in</span><button class="copy-btn" onclick="copyText('aha_m')">COPY</button></div>
+                            <div class="cred-item"><span class="value" id="aha_p">123456</span><button class="copy-btn" onclick="copyText('aha_p')">COPY</button></div>
                         </div>
                     </div>
                 </div>
-                
-                <div style="margin-top:20px;">
+
+                <div class="cat-wrapper" data-name="xbox microsoft gaming">
+                    <div class="cat-title">Gaming & Cloud // XBOX</div>
+                    <div class="app-card" onclick="this.classList.toggle('open')">
+                        <div class="app-header">
+                            <div><span class="badge">LIVE</span> <b>Nexus Xbox: Microsoft 365 Family</b></div>
+                            <div style="font-size: 11px; color: #22c55e;">Active</div>
+                        </div>
+                        <div class="creds-content" onclick="event.stopPropagation()">
+                            <div class="cred-item"><span class="value" id="xb1_m">erolergul_snp@hotmail.com</span><button class="copy-btn" onclick="copyText('xb1_m')">COPY</button></div>
+                            <div class="cred-item"><span class="value" id="xb1_p">erlergl1.</span><button class="copy-btn" onclick="copyText('xb1_p')">COPY</button></div>
+                        </div>
+                    </div>
+                    <div class="app-card" onclick="this.classList.toggle('open')">
+                        <div class="app-header">
+                            <div><span class="badge">LIVE</span> <b>Nexus Xbox: Live Gold 12M</b></div>
+                            <div style="font-size: 11px; color: #22c55e;">Verified</div>
+                        </div>
+                        <div class="creds-content" onclick="event.stopPropagation()">
+                            <div class="cred-item"><span class="value" id="xb2_m">wilton.oliveira0510@hotmail.com</span><button class="copy-btn" onclick="copyText('xb2_m')">COPY</button></div>
+                            <div class="cred-item"><span class="value" id="xb2_p">Tricolor@2028</span><button class="copy-btn" onclick="copyText('xb2_p')">COPY</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cat-wrapper" data-name="capcut pro video edit">
+                    <div class="cat-title">Creative // CAPCUT PRO</div>
+                    <div class="app-card" onclick="this.classList.toggle('open')">
+                        <div class="app-header">
+                            <div><span class="badge">PRO</span> <b>Nexus CapCut Pro Node</b></div>
+                        </div>
+                        <div class="creds-content" onclick="event.stopPropagation()">
+                            <div class="cred-item"><span class="value" id="cc_m">col.schilling@gmail.com</span><button class="copy-btn" onclick="copyText('cc_m')">COPY</button></div>
+                            <div class="cred-item"><span class="value" id="cc_p">120901</span><button class="copy-btn" onclick="copyText('cc_p')">COPY</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cat-wrapper" data-name="crunchyroll anime">
+                    <div class="cat-title">Anime // CRUNCHYROLL</div>
+                    <div class="app-card" onclick="this.classList.toggle('open')">
+                        <div class="app-header">
+                            <div><span class="badge">ELITE</span> <b>Nexus Crunchyroll Elite</b></div>
+                        </div>
+                        <div class="creds-content" onclick="event.stopPropagation()">
+                            <div class="cred-item"><span class="value" id="cr_m">hgbtzmnyv@mik3y.pro</span><button class="copy-btn" onclick="copyText('cr_m')">COPY</button></div>
+                            <div class="cred-item"><span class="value" id="cr_p">MAX205090</span><button class="copy-btn" onclick="copyText('cr_p')">COPY</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:40px;">
                     <script async="async" data-cfasync="false" src="https://apewirelessdiscard.com/76274c2418c5ab60df5b281a0bcb4011/invoke.js"></script>
                     <div id="container-76274c2418c5ab60df5b281a0bcb4011"></div>
                 </div>
@@ -92,11 +144,11 @@
 
     <script>
         function show(id, btn) {
-            // Triggering the view triggers the Popunder due to the user interaction
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             btn.classList.add('active');
+            // Popunder triggers on this user interaction
         }
 
         function copyText(id) {
@@ -105,6 +157,15 @@
                 const btn = event.target;
                 btn.innerText = "COPIED!";
                 setTimeout(() => btn.innerText = "COPY", 2000);
+            });
+        }
+
+        function filterApps() {
+            let input = document.getElementById('appSearch').value.toLowerCase();
+            let wrappers = document.querySelectorAll('.cat-wrapper');
+            wrappers.forEach(wrap => {
+                let name = wrap.getAttribute('data-name');
+                wrap.style.display = name.includes(input) ? "block" : "none";
             });
         }
     </script>
