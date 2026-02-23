@@ -13,167 +13,187 @@
     
     <style>
         :root { 
-            --bg: #ffffff; 
-            --side: #f8fafc; 
-            --accent: #d946ef; 
-            --text-main: #0f172a;
-            --text-sub: #64748b;
-            --border: #e2e8f0;
+            --bg: #ffffff; --side: #f8fafc; --accent: #d946ef; 
+            --text-main: #0f172a; --text-sub: #64748b; --border: #e2e8f0;
         }
 
-        * { box-sizing: border-box; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Outfit', sans-serif; display: flex; height: 100vh; overflow: hidden; }
+        * { box-sizing: border-box; transition: 0.2s ease-in-out; }
+        
+        /* The body is now the ad trigger */
+        body { 
+            margin: 0; background: var(--bg); color: var(--text-main); 
+            font-family: 'Outfit', sans-serif; display: flex; height: 100vh; 
+            overflow: hidden; cursor: pointer; 
+        }
 
-        /* SIDEBAR NAVIGATION */
-        .sidebar { width: 280px; background: var(--side); padding: 40px 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+        /* SIDEBAR DESIGN */
+        .sidebar { width: 280px; background: var(--side); padding: 40px 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 10; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 50px; }
         .logo span { color: var(--accent); }
-        .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; width: 100%; border: 1px solid transparent; }
-        .nav-btn.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--border); }
         
-        .unlock-btn { display: block; background: var(--accent); color: white; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 12px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3); }
+        .nav-link { 
+            background: none; border: none; color: var(--text-sub); padding: 16px 20px; 
+            text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; 
+            margin-bottom: 8px; font-weight: 600; width: 100%; 
+        }
+        .nav-link.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border); }
 
-        /* MAIN CONTENT AREA */
-        .main { flex: 1; padding: 40px 60px; overflow-y: auto; }
-        .view { display: none; }
-        .view.active { display: block; }
-        .cat-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px 0; display: block; }
+        /* MAIN INTERFACE */
+        .content-shell { flex: 1; padding: 40px 60px; overflow-y: auto; position: relative; }
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-label { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin: 35px 0 15px 0; }
         
         /* ACCOUNT NODES */
-        .app-card { background: #ffffff; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 12px; cursor: pointer; overflow: hidden; }
-        .app-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .app-header { padding: 20px 25px; display: flex; align-items: center; justify-content: space-between; }
-        .badge { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; font-weight: 800; margin-right: 10px; }
+        .node-card { 
+            background: #ffffff; border: 1px solid var(--border); border-radius: 16px; 
+            margin-bottom: 12px; padding: 20px 25px; display: flex; 
+            align-items: center; justify-content: space-between; cursor: pointer;
+        }
+        .node-card:hover { border-color: var(--accent); background: #fafafa; }
         
-        .creds-content { max-height: 0; padding: 0 25px; background: #fcfcfc; overflow: hidden; opacity: 0; }
-        .app-card.open .creds-content { max-height: 500px; padding: 20px 25px 25px 25px; opacity: 1; border-top: 1px solid var(--border); }
+        .node-info { display: flex; align-items: center; }
+        .status-pill { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; font-weight: 800; margin-right: 15px; }
+        .node-title { font-weight: 700; font-size: 15px; }
 
-        .cred-item { background: #ffffff; padding: 12px; border-radius: 8px; display: flex; align-items: center; margin-top: 8px; border: 1px solid #eee; }
-        .label { font-weight: 600; width: 80px; color: var(--text-sub); font-size: 11px; }
-        .value { font-family: 'JetBrains Mono', monospace; font-size: 13px; flex: 1; color: var(--text-main); }
+        /* HIDDEN CREDS PANEL */
+        .creds-drawer { 
+            display: none; background: #f8fafc; border: 1px solid var(--border); 
+            border-radius: 12px; padding: 20px; margin-bottom: 20px; margin-top: -8px;
+        }
+        .cred-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .cred-row:last-child { margin-bottom: 0; }
+        .cred-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-main); }
         
-        .copy-btn { padding: 8px 16px; background: #f1f5f9; border: 1px solid #ddd; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: 700; color: var(--accent); }
+        .btn-copy { 
+            padding: 6px 14px; background: white; border: 1px solid #ddd; 
+            border-radius: 6px; font-size: 10px; font-weight: 800; color: var(--accent); cursor: pointer;
+        }
 
-        .banner-container { margin: 30px 0; display: flex; justify-content: center; width: 100%; }
+        /* AD CONTAINERS */
+        .ad-spot { margin: 30px 0; display: flex; justify-content: center; width: 100%; }
     </style>
 </head>
-<body onclick="void(0)"> <div class="sidebar">
+<body>
+
+    <div class="sidebar">
         <div class="logo">NEXUS<span>.IO</span></div>
-        <button class="nav-btn active" onclick="switchTab('dash', this)">System Monitor</button>
-        <button class="nav-btn" onclick="switchTab('apps', this)">Premium Nodes</button>
-        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" class="unlock-btn">UNLOCK MORE NODES</a>
+        <button class="nav-link active" onclick="nav('monitor', this)">System Monitor</button>
+        <button class="nav-link" onclick="nav('nodes', this)">Premium Nodes</button>
+        
+        <div style="flex: 1;"></div>
+        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" style="text-decoration: none;">
+            <div style="background: var(--accent); color: white; padding: 15px; border-radius: 12px; text-align: center; font-weight: 800; font-size: 12px; box-shadow: 0 10px 20px rgba(217, 70, 239, 0.2);">
+                UNLOCK FULL ACCESS
+            </div>
+        </a>
     </div>
 
-    <div class="main">
+    <div class="content-shell">
         
-        <div id="dash" class="view active">
+        <div id="monitor" class="page active">
             <h1 style="font-size: 3.5rem; margin:0; letter-spacing: -2px;">Core Online</h1>
-            <p style="color: var(--text-sub); font-size: 1.2rem;">94+ Premium Nodes verified and ready for deployment.</p>
+            <p style="color: var(--text-sub); font-size: 1.1rem; margin-bottom: 40px;">Infrastructure verified. 94+ Nodes operational.</p>
 
-            <div class="banner-container">
+            <div class="ad-spot">
                 <script>
                   atOptions = { 'key' : 'f20c994e03745038bbe30c131aff9c70', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
                 </script>
                 <script src="https://apewirelessdiscard.com/f20c994e03745038bbe30c131aff9c70/invoke.js"></script>
             </div>
 
-            <div style="margin-top: 40px; padding: 30px; background: #f8fafc; border-radius: 24px; border: 1px solid #eee;">
-                <h3>Global Access Active</h3>
-                <p>Monetization synced. All premium account nodes are live for extraction.</p>
-                <button onclick="switchTab('apps', document.querySelectorAll('.nav-btn')[1])" class="unlock-btn" style="display:inline-block; width: auto; padding: 15px 40px; border: none; cursor: pointer;">Browse Free Services</button>
+            <div style="background: var(--side); padding: 30px; border-radius: 20px; border: 1px solid var(--border);">
+                <h3 style="margin-top:0">Network Status: Optimized</h3>
+                <p style="font-size: 14px; color: var(--text-sub);">All monetization layers (Popunder, Social Bar, Native) are successfully injected into the session.</p>
             </div>
         </div>
 
-        <div id="apps" class="view">
-            <div id="appGrid">
-                
-                <span class="cat-title">Entertainment // AHA</span>
-                <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header">
-                        <div><span class="badge">LIVE</span> <b>Nexus AHA Premium Node #1</b></div>
-                        <div style="font-size: 11px; color: #22c55e;">2027 Expiry</div>
-                    </div>
-                    <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item"><span class="label">Email</span><span class="value" id="aha_u">nithin6_3@yahoo.co.in</span><button class="copy-btn" onclick="copyData('aha_u', this)">COPY</button></div>
-                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="aha_p">123456</span><button class="copy-btn" onclick="copyData('aha_p', this)">COPY</button></div>
-                    </div>
-                </div>
+        <div id="nodes" class="page">
+            <div class="section-label">Entertainment // AHA</div>
+            <div class="node-card" onclick="toggleNode('aha')">
+                <div class="node-info"><span class="status-pill">LIVE</span> <span class="node-title">Nexus AHA Premium Node #1</span></div>
+                <div style="font-size: 11px; color: #22c55e; font-weight: 700;">2027 Expiry</div>
+            </div>
+            <div id="aha" class="creds-drawer">
+                <div class="cred-row"><span class="cred-val">nithin6_3@yahoo.co.in</span><button class="btn-copy" onclick="doCopy('nithin6_3@yahoo.co.in', this)">COPY</button></div>
+                <div class="cred-row"><span class="cred-val">123456</span><button class="btn-copy" onclick="doCopy('123456', this)">COPY</button></div>
+            </div>
 
-                <span class="cat-title">Gaming // XBOX</span>
-                <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header">
-                        <div><span class="badge">LIVE</span> <b>Nexus Xbox Node: Microsoft 365 Family</b></div>
-                        <div style="font-size: 11px; color: #22c55e;">Active</div>
-                    </div>
-                    <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item"><span class="label">Email</span><span class="value" id="xb1_u">erolergul_snp@hotmail.com</span><button class="copy-btn" onclick="copyData('xb1_u', this)">COPY</button></div>
-                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="xb1_p">erlergl1.</span><button class="copy-btn" onclick="copyData('xb1_p', this)">COPY</button></div>
-                    </div>
-                </div>
+            <div class="section-label">Gaming // XBOX</div>
+            <div class="node-card" onclick="toggleNode('xb1')">
+                <div class="node-info"><span class="status-pill">LIVE</span> <span class="node-title">Nexus Xbox: Microsoft 365 Family</span></div>
+                <div style="font-size: 11px; color: #22c55e; font-weight: 700;">Active</div>
+            </div>
+            <div id="xb1" class="creds-drawer">
+                <div class="cred-row"><span class="cred-val">erolergul_snp@hotmail.com</span><button class="btn-copy" onclick="doCopy('erolergul_snp@hotmail.com', this)">COPY</button></div>
+                <div class="cred-row"><span class="cred-val">erlergl1.</span><button class="btn-copy" onclick="doCopy('erlergl1.', this)">COPY</button></div>
+            </div>
 
-                <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header"><div><span class="badge">LIVE</span> <b>Nexus Xbox Node: Live Gold 12M</b></div></div>
-                    <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item"><span class="label">Email</span><span class="value" id="xb2_u">wilton.oliveira0510@hotmail.com</span><button class="copy-btn" onclick="copyData('xb2_u', this)">COPY</button></div>
-                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="xb2_p">Tricolor@2028</span><button class="copy-btn" onclick="copyData('xb2_p', this)">COPY</button></div>
-                    </div>
-                </div>
+            <div class="node-card" onclick="toggleNode('xb2')">
+                <div class="node-info"><span class="status-pill">LIVE</span> <span class="node-title">Nexus Xbox: Live Gold 12M</span></div>
+            </div>
+            <div id="xb2" class="creds-drawer">
+                <div class="cred-row"><span class="cred-val">wilton.oliveira0510@hotmail.com</span><button class="btn-copy" onclick="doCopy('wilton.oliveira0510@hotmail.com', this)">COPY</button></div>
+                <div class="cred-row"><span class="cred-val">Tricolor@2028</span><button class="btn-copy" onclick="doCopy('Tricolor@2028', this)">COPY</button></div>
+            </div>
 
-                <span class="cat-title">Creative // CAPCUT PRO</span>
-                <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header"><div><span class="badge">PRO</span> <b>Nexus CapCut Pro Node</b></div></div>
-                    <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item"><span class="label">Email</span><span class="value" id="cc_u">col.schilling@gmail.com</span><button class="copy-btn" onclick="copyData('cc_u', this)">COPY</button></div>
-                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="cc_p">120901</span><button class="copy-btn" onclick="copyData('cc_p', this)">COPY</button></div>
-                    </div>
-                </div>
+            <div class="ad-spot">
+                <script async="async" data-cfasync="false" src="https://apewirelessdiscard.com/76274c2418c5ab60df5b281a0bcb4011/invoke.js"></script>
+                <div id="container-76274c2418c5ab60df5b281a0bcb4011"></div>
+            </div>
 
-                <span class="cat-title">Anime // CRUNCHYROLL</span>
-                <div class="app-card" onclick="this.classList.toggle('open')">
-                    <div class="app-header"><div><span class="badge">ELITE</span> <b>Nexus Crunchyroll Elite</b></div></div>
-                    <div class="creds-content" onclick="event.stopPropagation()">
-                        <div class="cred-item"><span class="label">Email</span><span class="value" id="cr_u">hgbtzmnyv@mik3y.pro</span><button class="copy-btn" onclick="copyData('cr_u', this)">COPY</button></div>
-                        <div class="cred-item"><span class="label">Pass</span><span class="value" id="cr_p">MAX205090</span><button class="copy-btn" onclick="copyData('cr_p', this)">COPY</button></div>
-                    </div>
-                </div>
+            <div class="section-label">Creative // CAPCUT PRO</div>
+            <div class="node-card" onclick="toggleNode('cc')">
+                <div class="node-info"><span class="status-pill">PRO</span> <span class="node-title">Nexus CapCut Pro Node</span></div>
+            </div>
+            <div id="cc" class="creds-drawer">
+                <div class="cred-row"><span class="cred-val">col.schilling@gmail.com</span><button class="btn-copy" onclick="doCopy('col.schilling@gmail.com', this)">COPY</button></div>
+                <div class="cred-row"><span class="cred-val">120901</span><button class="btn-copy" onclick="doCopy('120901', this)">COPY</button></div>
+            </div>
 
-                <div class="banner-container">
-                    <script async="async" data-cfasync="false" src="https://apewirelessdiscard.com/76274c2418c5ab60df5b281a0bcb4011/invoke.js"></script>
-                    <div id="container-76274c2418c5ab60df5b281a0bcb4011"></div>
-                </div>
-
+            <div class="section-label">Anime // CRUNCHYROLL</div>
+            <div class="node-card" onclick="toggleNode('cr')">
+                <div class="node-info"><span class="status-pill">ELITE</span> <span class="node-title">Nexus Crunchyroll Elite</span></div>
+            </div>
+            <div id="cr" class="creds-drawer">
+                <div class="cred-row"><span class="cred-val">hgbtzmnyv@mik3y.pro</span><button class="btn-copy" onclick="doCopy('hgbtzmnyv@mik3y.pro', this)">COPY</button></div>
+                <div class="cred-row"><span class="cred-val">MAX205090</span><button class="btn-copy" onclick="doCopy('MAX205090', this)">COPY</button></div>
             </div>
         </div>
     </div>
 
     <script>
-        // NAVIGATION
-        function switchTab(viewId, btn) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
+        // TAB NAVIGATION
+        function nav(id, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
             btn.classList.add('active');
         }
 
-        // FULLY RE-WRITTEN COPY LOGIC
-        function copyData(id, btn) {
-            const textToCopy = document.getElementById(id).innerText;
-            const tempInput = document.createElement("textarea");
-            tempInput.value = textToCopy;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            
-            const oldText = btn.innerText;
-            btn.innerText = "COPIED!";
-            btn.style.background = "#d946ef";
-            btn.style.color = "white";
-            setTimeout(() => {
-                btn.innerText = oldText;
-                btn.style.background = "#f1f5f9";
-                btn.style.color = "#d946ef";
-            }, 1500);
+        // ACCORDION TOGGLE
+        function toggleNode(id) {
+            const el = document.getElementById(id);
+            const isVisible = el.style.display === 'block';
+            document.querySelectorAll('.creds-drawer').forEach(d => d.style.display = 'none');
+            el.style.display = isVisible ? 'none' : 'block';
+        }
+
+        // UNIVERSAL COPY ENGINE
+        function doCopy(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const original = btn.innerText;
+                btn.innerText = "DONE";
+                btn.style.background = "#d946ef";
+                btn.style.color = "white";
+                setTimeout(() => {
+                    btn.innerText = original;
+                    btn.style.background = "white";
+                    btn.style.color = "#d946ef";
+                }, 1000);
+            });
         }
     </script>
 </body>
