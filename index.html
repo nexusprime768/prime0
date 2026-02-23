@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXUS // PREMIUM INFRASTRUCTURE</title>
+    
+    <script src="https://pl28779890.effectivegatecpm.com/3d/3f/59/3d3f59e05461846fed6dcf8736f774ca.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --bg: #ffffff; 
-            --side: #f8fafc; 
+            --bg: #05070a; 
+            --side: #0a0c10; 
             --accent: #d946ef; 
-            --text-main: #0f172a;
-            --text-sub: #64748b;
-            --border: #e2e8f0;
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
+            --card-bg: #0f172a;
+            --border: #1e293b;
         }
 
         * { box-sizing: border-box; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -22,9 +26,9 @@
         .sidebar { width: 280px; background: var(--side); padding: 40px 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 50px; }
         .logo span { color: var(--accent); }
-        .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; border: 1px solid transparent; }
-        .nav-btn.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--border); }
-        .logout-btn { margin-top: auto; color: #ef4444; }
+        .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; }
+        .nav-btn.active { background: var(--card-bg); color: var(--accent); border: 1px solid var(--border); }
+        .logout-btn { margin-top: auto; color: #ef4444; text-decoration: none; font-weight: bold; padding: 10px; }
 
         /* MAIN */
         .main { flex: 1; padding: 40px 60px; overflow-y: auto; }
@@ -32,131 +36,72 @@
         .view.active { display: block; }
 
         /* SEARCH BAR */
-        .search-container { position: sticky; top: -40px; background: white; padding: 20px 0; z-index: 100; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .search-input { width: 100%; padding: 15px 25px; border-radius: 15px; border: 1px solid var(--border); font-family: 'Outfit', sans-serif; font-size: 1rem; outline: none; }
-        .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(217, 70, 239, 0.1); }
-
-        /* CATEGORY HEADERS */
-        .cat-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px 0; display: block; }
+        .search-container { position: sticky; top: -40px; background: var(--bg); padding: 20px 0; z-index: 100; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .search-input { width: 100%; padding: 15px 25px; border-radius: 15px; border: 1px solid var(--border); background: var(--card-bg); color: white; outline: none; }
 
         /* APP CARDS */
-        .app-container { max-width: 900px; }
-        .app-card { background: #ffffff; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 12px; cursor: pointer; overflow: hidden; }
-        .app-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        
+        .cat-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px 0; }
+        .app-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; margin-bottom: 12px; cursor: pointer; overflow: hidden; }
+        .app-card:hover { border-color: var(--accent); }
         .app-header { padding: 20px 25px; display: flex; align-items: center; justify-content: space-between; }
-        .badge { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; margin-right: 12px; font-weight: 800; }
-        .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 8px; box-shadow: 0 0 8px #22c55e; }
+        .badge { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; margin-right: 12px; }
 
-        /* REVEAL LOGIC */
-        .creds-content { max-height: 0; padding: 0 25px; background: #fcfcfc; overflow: hidden; opacity: 0; }
-        .app-card.open { border-color: var(--accent); }
-        .app-card.open .creds-content { max-height: 500px; padding: 20px 25px 25px 25px; opacity: 1; border-top: 1px solid var(--border); }
-
-        .cred-item { background: #ffffff; padding: 12px; border-radius: 8px; display: flex; align-items: center; margin-top: 8px; border: 1px solid #eee; }
-        .label { font-weight: 600; width: 80px; color: var(--text-sub); font-size: 11px; }
-        .value { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; flex: 1; color: var(--text-main); }
-        
-        .copy-btn { padding: 4px 10px; background: var(--side); border: 1px solid #ddd; border-radius: 5px; font-size: 9px; cursor: pointer; font-weight: 700; }
-        .copy-btn:hover { background: var(--accent); color: white; }
-
-        .info-box { font-size: 11px; color: #64748b; margin-top: 15px; padding: 10px; background: #f1f5f9; border-radius: 8px; line-height: 1.4; border-left: 3px solid var(--accent); }
+        /* CREDS */
+        .creds-content { max-height: 0; padding: 0 25px; opacity: 0; background: #0b1120; }
+        .app-card.open .creds-content { max-height: 500px; padding: 20px 25px; opacity: 1; border-top: 1px solid var(--border); }
+        .cred-item { background: var(--bg); padding: 12px; border-radius: 8px; display: flex; align-items: center; margin-top: 8px; }
+        .value { font-family: 'JetBrains Mono', monospace; color: var(--accent); flex: 1; margin-left: 10px; }
+        .info-box { font-size: 11px; color: var(--text-sub); margin-top: 15px; padding: 10px; background: #1e293b; border-radius: 8px; border-left: 3px solid var(--accent); }
     </style>
 </head>
 <body>
 
     <div class="sidebar">
         <div class="logo">NEXUS<span>.IO</span></div>
-        <button class="nav-btn active" onclick="show('dash', this)">System Monitor</button>
-        <button class="nav-btn" onclick="show('apps', this)">Premium Nodes</button>
-        <button class="nav-btn logout-btn" onclick="window.location.reload()">Logout</button>
+        <button class="nav-btn" onclick="show('dash', this)">Dashboard</button>
+        <button class="nav-btn active" onclick="show('apps', this)">Browse Free Services</button>
+        <a href="#" class="logout-btn" onclick="window.location.reload()">Logout</a>
     </div>
 
     <div class="main">
-        <div id="dash" class="view active">
-            <h1 style="font-size: 3.5rem; margin:0; letter-spacing: -2px;">Core Online</h1>
-            <p style="color: var(--text-sub); font-size: 1.2rem;">94+ Premium Nodes verified and ready for deployment.</p>
-            <div style="margin-top: 40px; padding: 30px; background: #f8fafc; border-radius: 24px; border: 1px solid #eee;">
-                <h3 style="margin-top:0"><span class="status-dot"></span> All Services Operational</h3>
-                <p style="font-size: 14px; color: #64748b;">NEXUS has successfully indexed the latest AHA, Xbox, and CapCut accounts. Navigate to 'Premium Nodes' to begin.</p>
-            </div>
+        <div id="dash" class="view">
+            <h1>System Status: <span style="color: #22c55e;">Operational</span></h1>
+            <p>Static GitHub Node initialized on public host: <b>nexusprime768.github.io</b></p>
         </div>
 
-        <div id="apps" class="view">
+        <div id="apps" class="view active">
             <div class="search-container">
-                <input type="text" id="appSearch" class="search-input" placeholder="Search for AHA, Xbox, CapCut..." onkeyup="filterApps()">
+                <input type="text" id="appSearch" class="search-input" placeholder="Search for premium services..." onkeyup="filterApps()">
             </div>
 
-            <div class="app-container" id="appGrid">
+            <div id="appGrid">
+                <div class="cat-title">Gaming // Xbox & Microsoft</div>
                 
-                <div class="cat-wrapper" data-name="aha entertainment">
-                    <div class="cat-title">Entertainment // AHA</div>
-                    <div class="app-card" onclick="this.classList.toggle('open')">
-                        <div class="app-header">
-                            <div><span class="badge">LIVE</span> <b>Nexus AHA Premium Node #1</b></div>
-                            <div style="font-size: 11px; color: #22c55e;">2027 Expiry</div>
-                        </div>
-                        <div class="creds-content" onclick="event.stopPropagation()">
-                            <div class="cred-item"><span class="label">Email</span><span class="value">nithin6_3@yahoo.co.in</span><button class="copy-btn">COPY</button></div>
-                            <div class="cred-item"><span class="label">Pass</span><span class="value">123456</span><button class="copy-btn">COPY</button></div>
-                            <div class="info-box">Plan: TELUGU, TAMIL | Region: India | Expires: 24-01-2027</div>
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header">
+                        <div><span class="badge">LIVE</span> <b>Xbox Node: Family Plan</b></div>
+                        <div style="font-size: 11px; color: #22c55e;">Active Subscription</div>
+                    </div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span>Email:</span><span class="value">erolergul_snp@hotmail.com</span></div>
+                        <div class="cred-item"><span>Pass:</span><span class="value">erlergl1.</span></div>
+                        <div class="info-box">
+                            <b>Language Tip:</b> This account is in German. Use Chrome Browser "Translate" to navigate.
                         </div>
                     </div>
                 </div>
 
-                <div class="cat-wrapper" data-name="xbox obox microsoft 365 gaming">
-                    <div class="cat-title">Gaming & Cloud // XBOX</div>
-                    <div class="app-card" onclick="this.classList.toggle('open')">
-                        <div class="app-header">
-                            <div><span class="badge">LIVE</span> <b>Nexus Xbox Node: Microsoft 365 Family</b></div>
-                            <div style="font-size: 11px; color: #22c55e;">Active</div>
-                        </div>
-                        <div class="creds-content" onclick="event.stopPropagation()">
-                            <div class="cred-item"><span class="label">Email</span><span class="value">erolergul_snp@hotmail.com</span><button class="copy-btn">COPY</button></div>
-                            <div class="cred-item"><span class="label">Pass</span><span class="value">erlergl1.</span><button class="copy-btn">COPY</button></div>
-                            <div class="info-box">
-                                <b>Language Notice:</b> Page might be in German. <br>
-                                Use Chrome "Translate to English" to navigate.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="app-card" onclick="this.classList.toggle('open')">
-                        <div class="app-header">
-                            <div><span class="badge">LIVE</span> <b>Nexus Xbox Node: Live Gold 12M</b></div>
-                            <div style="font-size: 11px; color: #22c55e;">Verified</div>
-                        </div>
-                        <div class="creds-content" onclick="event.stopPropagation()">
-                            <div class="cred-item"><span class="label">Email</span><span class="value">wilton.oliveira0510@hotmail.com</span><button class="copy-btn">COPY</button></div>
-                            <div class="cred-item"><span class="label">Pass</span><span class="value">Tricolor@2028</span><button class="copy-btn">COPY</button></div>
-                        </div>
-                    </div>
-                </div>
+                <div class="cat-title">Entertainment // Streaming</div>
 
-                <div class="cat-wrapper" data-name="capcut pro video edit">
-                    <div class="cat-title">Creative // CAPCUT PRO</div>
-                    <div class="app-card" onclick="this.classList.toggle('open')">
-                        <div class="app-header">
-                            <div><span class="badge">PRO</span> <b>Nexus CapCut Pro Node</b></div>
-                            <div style="font-size: 11px; color: #22c55e;">Verified</div>
-                        </div>
-                        <div class="creds-content" onclick="event.stopPropagation()">
-                            <div class="cred-item"><span class="label">Email</span><span class="value">col.schilling@gmail.com</span><button class="copy-btn">COPY</button></div>
-                            <div class="cred-item"><span class="label">Pass</span><span class="value">120901</span><button class="copy-btn">COPY</button></div>
-                        </div>
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header">
+                        <div><span class="badge">FREE</span> <b>KrunshyRole Premium Activation</b></div>
+                        <div style="font-size: 11px; color: var(--accent);">Initialize</div>
                     </div>
-                </div>
-
-                <div class="cat-wrapper" data-name="crunchyroll anime krunshyrole">
-                    <div class="cat-title">Anime // CRUNCHYROLL</div>
-                    <div class="app-card" onclick="this.classList.toggle('open')">
-                        <div class="app-header">
-                            <div><span class="badge">ELITE</span> <b>Nexus Crunchyroll Elite</b></div>
-                            <div style="font-size: 11px; color: #22c55e;">Verified</div>
-                        </div>
-                        <div class="creds-content" onclick="event.stopPropagation()">
-                            <div class="cred-item"><span class="label">Email</span><span class="value">hgbtzmnyv@mik3y.pro</span><button class="copy-btn">COPY</button></div>
-                            <div class="cred-item"><span class="label">Pass</span><span class="value">MAX205090</span><button class="copy-btn">COPY</button></div>
-                        </div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span>Email:</span><span class="value">oxaam901717@gmail.com</span></div>
+                        <div class="cred-item"><span>Pass:</span><span class="value">oxaam9192757</span></div>
+                        <div class="info-box">Warning: Shared account. Do not change profile settings.</div>
                     </div>
                 </div>
 
@@ -174,15 +119,10 @@
 
         function filterApps() {
             let input = document.getElementById('appSearch').value.toLowerCase();
-            let wrappers = document.querySelectorAll('.cat-wrapper');
-            
-            wrappers.forEach(wrap => {
-                let name = wrap.getAttribute('data-name');
-                if (name.includes(input)) {
-                    wrap.style.display = "block";
-                } else {
-                    wrap.style.display = "none";
-                }
+            let cards = document.querySelectorAll('.app-card');
+            cards.forEach(card => {
+                let text = card.innerText.toLowerCase();
+                card.style.display = text.includes(input) ? "block" : "none";
             });
         }
     </script>
