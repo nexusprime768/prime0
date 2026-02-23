@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS // PREMIUM INFRASTRUCTURE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --bg: #ffffff; 
+            --side: #f8fafc; 
+            --accent: #d946ef; 
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Outfit', sans-serif; display: flex; height: 100vh; overflow: hidden; }
+
+        /* SIDEBAR */
+        .sidebar { width: 280px; background: var(--side); padding: 40px 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 50px; }
+        .logo span { color: var(--accent); }
+        .nav-btn { background: transparent; border: none; color: var(--text-sub); padding: 16px 20px; text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; margin-bottom: 8px; font-weight: 600; }
+        .nav-btn.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+        /* MAIN */
+        .main { flex: 1; padding: 60px; overflow-y: auto; }
+        .view { display: none; }
+        .view.active { display: block; }
+
+        /* CATEGORY HEADERS */
+        .cat-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px 0; }
+
+        /* APP CARDS */
+        .app-container { max-width: 900px; }
+        .app-card { background: #ffffff; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 12px; cursor: pointer; overflow: hidden; }
+        .app-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        
+        .app-header { padding: 20px 25px; display: flex; align-items: center; justify-content: space-between; }
+        .badge { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; margin-right: 12px; font-weight: 800; }
+        .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 8px; box-shadow: 0 0 8px #22c55e; }
+
+        /* REVEAL LOGIC */
+        .creds-content { max-height: 0; padding: 0 25px; background: #fcfcfc; overflow: hidden; opacity: 0; }
+        .app-card.open { border-color: var(--accent); }
+        .app-card.open .creds-content { max-height: 500px; padding: 20px 25px 25px 25px; opacity: 1; border-top: 1px solid var(--border); }
+
+        .cred-item { background: #ffffff; padding: 12px; border-radius: 8px; display: flex; align-items: center; margin-top: 8px; border: 1px solid #eee; }
+        .label { font-weight: 600; width: 80px; color: var(--text-sub); font-size: 11px; }
+        .value { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; flex: 1; color: var(--text-main); }
+        
+        .copy-btn { padding: 4px 10px; background: var(--side); border: 1px solid #ddd; border-radius: 5px; font-size: 9px; cursor: pointer; font-weight: 700; }
+        .copy-btn:hover { background: var(--accent); color: white; }
+
+        .info-box { font-size: 11px; color: #64748b; margin-top: 15px; padding: 10px; background: #f1f5f9; border-radius: 8px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">NEXUS<span>.IO</span></div>
+        <button class="nav-btn active" onclick="show('dash', this)">System Monitor</button>
+        <button class="nav-btn" onclick="show('apps', this)">Premium Nodes</button>
+    </div>
+
+    <div class="main">
+        <div id="dash" class="view active">
+            <h1 style="font-size: 3.5rem; margin:0; letter-spacing: -2px;">Core Online</h1>
+            <p style="color: var(--text-sub); font-size: 1.2rem;">94+ Premium Nodes verified and ready for deployment.</p>
+            <div style="margin-top: 40px; padding: 30px; background: #f8fafc; border-radius: 24px; border: 1px solid #eee;">
+                <h3 style="margin-top:0"><span class="status-dot"></span> All Services Operational</h3>
+                <p style="font-size: 14px; color: #64748b;">NEXUS has successfully indexed the latest AHA, OBOX, and CAPCUT accounts. Navigate to 'Premium Nodes' to begin.</p>
+            </div>
+        </div>
+
+        <div id="apps" class="view">
+            <h1>Premium Infrastructure</h1>
+            
+            <div class="app-container">
+                
+                <div class="cat-title">Entertainment // AHA</div>
+                
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header">
+                        <div><span class="badge">LIVE</span> <b>Nexus AHA Premium Node #1</b></div>
+                        <div style="font-size: 11px; color: #22c55e;">2027 Expiry</div>
+                    </div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span class="label">Email</span><span class="value">nithin6_3@yahoo.co.in</span><button class="copy-btn">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value">123456</span><button class="copy-btn">COPY</button></div>
+                        <div class="info-box">Plan: TELUGU, TAMIL | Region: India | Expires: 24-01-2027</div>
+                    </div>
+                </div>
+
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header">
+                        <div><span class="badge">LIVE</span> <b>Nexus AHA Premium Node #2</b></div>
+                        <div style="font-size: 11px; color: #22c55e;">2026 Expiry</div>
+                    </div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span class="label">Email</span><span class="value">anchesanthi@gmail.com</span><button class="copy-btn">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value">9866334315</span><button class="copy-btn">COPY</button></div>
+                        <div class="info-box">Plan: TELUGU, TAMIL | Region: India | Expires: 04-11-2026</div>
+                    </div>
+                </div>
+
+                <div class="cat-title">Gaming & Cloud // OBOX/XBOX</div>
+
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header">
+                        <div><span class="badge">LIVE</span> <b>Nexus Microsoft 365 Family Node</b></div>
+                        <div style="font-size: 11px; color: #22c55e;">Active</div>
+                    </div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span class="label">Email</span><span class="value">erolergul_snp@hotmail.com</span><button class="copy-btn">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value">erlergl1.</span><button class="copy-btn">COPY</button></div>
+                        <div class="info-box">Service: Microsoft 365 Aile | Region: US | Auto-Renew: On</div>
+                    </div>
+                </div>
+
+                <div class="cat-title">Creative // CAPCUT PRO</div>
+
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header">
+                        <div><span class="badge">PRO</span> <b>Nexus CapCut Pro Node</b></div>
+                        <div style="font-size: 11px; color: #22c55e;">Verified</div>
+                    </div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span class="label">Email</span><span class="value">col.schilling@gmail.com</span><button class="copy-btn">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value">120901</span><button class="copy-btn">COPY</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-title">Anime // CRUNCHYROLL</div>
+
+                <div class="app-card" onclick="this.classList.toggle('open')">
+                    <div class="app-header">
+                        <div><span class="badge">ELITE</span> <b>Nexus Crunchyroll Node</b></div>
+                        <div style="font-size: 11px; color: #22c55e;">Verified</div>
+                    </div>
+                    <div class="creds-content" onclick="event.stopPropagation()">
+                        <div class="cred-item"><span class="label">Email</span><span class="value">hgbtzmnyv@mik3y.pro</span><button class="copy-btn">COPY</button></div>
+                        <div class="cred-item"><span class="label">Pass</span><span class="value">MAX205090</span><button class="copy-btn">COPY</button></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function show(id, btn) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
