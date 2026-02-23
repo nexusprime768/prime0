@@ -3,194 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS // PREMIUM INFRASTRUCTURE</title>
+    <title>NEXUS // INFRASTRUCTURE</title>
 
     <script src="https://pl28779890.effectivegatecpm.com/3d/3f/59/3d3f59e05461846fed6dcf8736f774ca.js"></script>
 
     <script src="https://apewirelessdiscard.com/54/0f/c7/540fc77f1a432918bb7de165a7ddec18.js"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&family=Space+Mono&display=swap" rel="stylesheet">
     
     <style>
         :root { 
-            --bg: #ffffff; --side: #f8fafc; --accent: #d946ef; 
-            --text-main: #0f172a; --text-sub: #64748b; --border: #e2e8f0;
+            --accent: #d946ef; --bg: #ffffff; --sidebar: #f8fafc; 
+            --text: #0f172a; --subtext: #64748b; --border: #e2e8f0;
         }
 
-        * { box-sizing: border-box; transition: 0.2s ease-in-out; }
+        * { box-sizing: border-box; transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
         
-        /* The body is now the ad trigger */
+        /* The entire body is a click trigger for ads */
         body { 
-            margin: 0; background: var(--bg); color: var(--text-main); 
+            margin: 0; background: var(--bg); color: var(--text); 
             font-family: 'Outfit', sans-serif; display: flex; height: 100vh; 
             overflow: hidden; cursor: pointer; 
         }
 
-        /* SIDEBAR DESIGN */
-        .sidebar { width: 280px; background: var(--side); padding: 40px 20px; border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 10; }
-        .logo { font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 50px; }
-        .logo span { color: var(--accent); }
+        /* NEW SIDEBAR UI */
+        .side-nav { width: 260px; background: var(--sidebar); border-right: 1px solid var(--border); padding: 40px 20px; display: flex; flex-direction: column; }
+        .brand { font-size: 24px; font-weight: 900; letter-spacing: -1px; margin-bottom: 50px; }
+        .brand span { color: var(--accent); }
         
-        .nav-link { 
-            background: none; border: none; color: var(--text-sub); padding: 16px 20px; 
-            text-align: left; font-size: 1rem; cursor: pointer; border-radius: 12px; 
-            margin-bottom: 8px; font-weight: 600; width: 100%; 
+        .menu-item { 
+            padding: 14px 18px; border-radius: 12px; cursor: pointer; font-weight: 600; 
+            color: var(--subtext); margin-bottom: 10px; border: 1px solid transparent;
         }
-        .nav-link.active { background: #fff; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+        .menu-item:hover { color: var(--text); background: #f1f5f9; }
+        .menu-item.active { background: #fff; color: var(--accent); border-color: var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
 
-        /* MAIN INTERFACE */
-        .content-shell { flex: 1; padding: 40px 60px; overflow-y: auto; position: relative; }
-        .page { display: none; animation: fadeIn 0.4s ease; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* CONTENT ENGINE */
+        .view-port { flex: 1; padding: 50px 70px; overflow-y: auto; position: relative; }
+        .view { display: none; }
+        .view.active { display: block; animation: slideUp 0.4s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .section-label { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin: 35px 0 15px 0; }
+        /* PREMIUM NODES UI */
+        .category-tag { font-size: 11px; font-weight: 800; color: var(--accent); letter-spacing: 1px; margin: 35px 0 15px 0; text-transform: uppercase; }
         
-        /* ACCOUNT NODES */
-        .node-card { 
-            background: #ffffff; border: 1px solid var(--border); border-radius: 16px; 
-            margin-bottom: 12px; padding: 20px 25px; display: flex; 
-            align-items: center; justify-content: space-between; cursor: pointer;
+        .node { 
+            background: #fff; border: 1px solid var(--border); border-radius: 18px; 
+            padding: 22px 28px; margin-bottom: 12px; display: flex; 
+            align-items: center; justify-content: space-between;
         }
-        .node-card:hover { border-color: var(--accent); background: #fafafa; }
+        .node:hover { border-color: var(--accent); transform: scale(1.01); }
         
-        .node-info { display: flex; align-items: center; }
-        .status-pill { background: #3b82f6; color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; font-weight: 800; margin-right: 15px; }
-        .node-title { font-weight: 700; font-size: 15px; }
-
-        /* HIDDEN CREDS PANEL */
-        .creds-drawer { 
-            display: none; background: #f8fafc; border: 1px solid var(--border); 
-            border-radius: 12px; padding: 20px; margin-bottom: 20px; margin-top: -8px;
-        }
-        .cred-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-        .cred-row:last-child { margin-bottom: 0; }
-        .cred-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-main); }
+        .node-left { display: flex; align-items: center; gap: 15px; }
+        .dot { height: 8px; width: 8px; background: #22c55e; border-radius: 50%; }
+        .node-name { font-weight: 700; font-size: 16px; }
         
-        .btn-copy { 
-            padding: 6px 14px; background: white; border: 1px solid #ddd; 
-            border-radius: 6px; font-size: 10px; font-weight: 800; color: var(--accent); cursor: pointer;
+        /* DATA REVEAL SYSTEM */
+        .data-box { 
+            display: none; background: #f1f5f9; border-radius: 14px; 
+            padding: 15px 25px; margin: -5px 0 20px 0; border: 1px solid var(--border);
+        }
+        .data-line { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; }
+        .val { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 600; color: #1e293b; }
+        
+        .copy-pill { 
+            font-size: 10px; font-weight: 800; color: var(--accent); 
+            background: #fff; border: 1px solid var(--border); 
+            padding: 5px 12px; border-radius: 6px; cursor: pointer;
         }
 
-        /* AD CONTAINERS */
-        .ad-spot { margin: 30px 0; display: flex; justify-content: center; width: 100%; }
+        /* AD SPOTS */
+        .ad-row { margin: 40px 0; display: flex; justify-content: center; }
     </style>
 </head>
-<body>
-
-    <div class="sidebar">
-        <div class="logo">NEXUS<span>.IO</span></div>
-        <button class="nav-link active" onclick="nav('monitor', this)">System Monitor</button>
-        <button class="nav-link" onclick="nav('nodes', this)">Premium Nodes</button>
+<body onclick="void(0)"> <div class="side-nav">
+        <div class="brand">NEXUS<span>.IO</span></div>
+        <div class="menu-item active" onclick="tab('monitor', this)">System Monitor</div>
+        <div class="menu-item" onclick="tab('nodes', this)">Premium Nodes</div>
         
         <div style="flex: 1;"></div>
-        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" style="text-decoration: none;">
-            <div style="background: var(--accent); color: white; padding: 15px; border-radius: 12px; text-align: center; font-weight: 800; font-size: 12px; box-shadow: 0 10px 20px rgba(217, 70, 239, 0.2);">
+        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" style="text-decoration:none">
+            <div style="background: var(--accent); color:#fff; padding:16px; border-radius:14px; text-align:center; font-weight:900; font-size:12px;">
                 UNLOCK FULL ACCESS
             </div>
         </a>
     </div>
 
-    <div class="content-shell">
+    <div class="view-port">
         
-        <div id="monitor" class="page active">
-            <h1 style="font-size: 3.5rem; margin:0; letter-spacing: -2px;">Core Online</h1>
-            <p style="color: var(--text-sub); font-size: 1.1rem; margin-bottom: 40px;">Infrastructure verified. 94+ Nodes operational.</p>
+        <div id="monitor" class="view active">
+            <h1 style="font-size: 4rem; margin:0; letter-spacing: -3px;">Core Online</h1>
+            <p style="color: var(--subtext); font-size: 1.2rem; margin-bottom: 40px;">Infrastructure verified. 94+ Nodes operational.</p>
 
-            <div class="ad-spot">
+            <div class="ad-row">
                 <script>
                   atOptions = { 'key' : 'f20c994e03745038bbe30c131aff9c70', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
                 </script>
                 <script src="https://apewirelessdiscard.com/f20c994e03745038bbe30c131aff9c70/invoke.js"></script>
             </div>
 
-            <div style="background: var(--side); padding: 30px; border-radius: 20px; border: 1px solid var(--border);">
+            <div style="background: #f8fafc; padding: 35px; border-radius: 24px; border: 1px solid var(--border);">
                 <h3 style="margin-top:0">Network Status: Optimized</h3>
-                <p style="font-size: 14px; color: var(--text-sub);">All monetization layers (Popunder, Social Bar, Native) are successfully injected into the session.</p>
+                <p style="color: var(--subtext); font-size: 14px;">All monetization layers (Popunder, Social Bar, Native) successfully injected into session.</p>
             </div>
         </div>
 
-        <div id="nodes" class="page">
-            <div class="section-label">Entertainment // AHA</div>
-            <div class="node-card" onclick="toggleNode('aha')">
-                <div class="node-info"><span class="status-pill">LIVE</span> <span class="node-title">Nexus AHA Premium Node #1</span></div>
-                <div style="font-size: 11px; color: #22c55e; font-weight: 700;">2027 Expiry</div>
+        <div id="nodes" class="view">
+            
+            <div class="category-tag">Entertainment // AHA</div>
+            <div class="node" onclick="reveal('aha')">
+                <div class="node-left"><div class="dot"></div><div class="node-name">Nexus AHA Premium Node #1</div></div>
+                <div style="font-size:11px; color:#22c55e; font-weight:800;">2027 EXPIRY</div>
             </div>
-            <div id="aha" class="creds-drawer">
-                <div class="cred-row"><span class="cred-val">nithin6_3@yahoo.co.in</span><button class="btn-copy" onclick="doCopy('nithin6_3@yahoo.co.in', this)">COPY</button></div>
-                <div class="cred-row"><span class="cred-val">123456</span><button class="btn-copy" onclick="doCopy('123456', this)">COPY</button></div>
-            </div>
-
-            <div class="section-label">Gaming // XBOX</div>
-            <div class="node-card" onclick="toggleNode('xb1')">
-                <div class="node-info"><span class="status-pill">LIVE</span> <span class="node-title">Nexus Xbox: Microsoft 365 Family</span></div>
-                <div style="font-size: 11px; color: #22c55e; font-weight: 700;">Active</div>
-            </div>
-            <div id="xb1" class="creds-drawer">
-                <div class="cred-row"><span class="cred-val">erolergul_snp@hotmail.com</span><button class="btn-copy" onclick="doCopy('erolergul_snp@hotmail.com', this)">COPY</button></div>
-                <div class="cred-row"><span class="cred-val">erlergl1.</span><button class="btn-copy" onclick="doCopy('erlergl1.', this)">COPY</button></div>
+            <div id="aha" class="data-box">
+                <div class="data-line"><span class="val">nithin6_3@yahoo.co.in</span><div class="copy-pill" onclick="copy('nithin6_3@yahoo.co.in', this)">COPY</div></div>
+                <div class="data-line"><span class="val">123456</span><div class="copy-pill" onclick="copy('123456', this)">COPY</div></div>
             </div>
 
-            <div class="node-card" onclick="toggleNode('xb2')">
-                <div class="node-info"><span class="status-pill">LIVE</span> <span class="node-title">Nexus Xbox: Live Gold 12M</span></div>
+            <div class="category-tag">Gaming // XBOX</div>
+            <div class="node" onclick="reveal('xb1')">
+                <div class="node-left"><div class="dot"></div><div class="node-name">Nexus Xbox: Microsoft 365 Family</div></div>
+                <div style="font-size:11px; color:#22c55e; font-weight:800;">ACTIVE</div>
             </div>
-            <div id="xb2" class="creds-drawer">
-                <div class="cred-row"><span class="cred-val">wilton.oliveira0510@hotmail.com</span><button class="btn-copy" onclick="doCopy('wilton.oliveira0510@hotmail.com', this)">COPY</button></div>
-                <div class="cred-row"><span class="cred-val">Tricolor@2028</span><button class="btn-copy" onclick="doCopy('Tricolor@2028', this)">COPY</button></div>
+            <div id="xb1" class="data-box">
+                <div class="data-line"><span class="val">erolergul_snp@hotmail.com</span><div class="copy-pill" onclick="copy('erolergul_snp@hotmail.com', this)">COPY</div></div>
+                <div class="data-line"><span class="val">erlergl1.</span><div class="copy-pill" onclick="copy('erlergl1.', this)">COPY</div></div>
             </div>
 
-            <div class="ad-spot">
+            <div class="node" onclick="reveal('xb2')">
+                <div class="node-left"><div class="dot"></div><div class="node-name">Nexus Xbox: Live Gold 12M</div></div>
+            </div>
+            <div id="xb2" class="data-box">
+                <div class="data-line"><span class="val">wilton.oliveira0510@hotmail.com</span><div class="copy-pill" onclick="copy('wilton.oliveira0510@hotmail.com', this)">COPY</div></div>
+                <div class="data-line"><span class="val">Tricolor@2028</span><div class="copy-pill" onclick="copy('Tricolor@2028', this)">COPY</div></div>
+            </div>
+
+            <div class="ad-row">
                 <script async="async" data-cfasync="false" src="https://apewirelessdiscard.com/76274c2418c5ab60df5b281a0bcb4011/invoke.js"></script>
                 <div id="container-76274c2418c5ab60df5b281a0bcb4011"></div>
             </div>
 
-            <div class="section-label">Creative // CAPCUT PRO</div>
-            <div class="node-card" onclick="toggleNode('cc')">
-                <div class="node-info"><span class="status-pill">PRO</span> <span class="node-title">Nexus CapCut Pro Node</span></div>
+            <div class="category-tag">Creative // CAPCUT PRO</div>
+            <div class="node" onclick="reveal('cc')">
+                <div class="node-left"><div class="dot" style="background:#3b82f6"></div><div class="node-name">Nexus CapCut Pro Node</div></div>
             </div>
-            <div id="cc" class="creds-drawer">
-                <div class="cred-row"><span class="cred-val">col.schilling@gmail.com</span><button class="btn-copy" onclick="doCopy('col.schilling@gmail.com', this)">COPY</button></div>
-                <div class="cred-row"><span class="cred-val">120901</span><button class="btn-copy" onclick="doCopy('120901', this)">COPY</button></div>
+            <div id="cc" class="data-box">
+                <div class="data-line"><span class="val">col.schilling@gmail.com</span><div class="copy-pill" onclick="copy('col.schilling@gmail.com', this)">COPY</div></div>
+                <div class="data-line"><span class="val">120901</span><div class="copy-pill" onclick="copy('120901', this)">COPY</div></div>
             </div>
 
-            <div class="section-label">Anime // CRUNCHYROLL</div>
-            <div class="node-card" onclick="toggleNode('cr')">
-                <div class="node-info"><span class="status-pill">ELITE</span> <span class="node-title">Nexus Crunchyroll Elite</span></div>
+            <div class="category-tag">Anime // CRUNCHYROLL</div>
+            <div class="node" onclick="reveal('cr')">
+                <div class="node-left"><div class="dot" style="background:#f97316"></div><div class="node-name">Nexus Crunchyroll Elite</div></div>
             </div>
-            <div id="cr" class="creds-drawer">
-                <div class="cred-row"><span class="cred-val">hgbtzmnyv@mik3y.pro</span><button class="btn-copy" onclick="doCopy('hgbtzmnyv@mik3y.pro', this)">COPY</button></div>
-                <div class="cred-row"><span class="cred-val">MAX205090</span><button class="btn-copy" onclick="doCopy('MAX205090', this)">COPY</button></div>
+            <div id="cr" class="data-box">
+                <div class="data-line"><span class="val">hgbtzmnyv@mik3y.pro</span><div class="copy-pill" onclick="copy('hgbtzmnyv@mik3y.pro', this)">COPY</div></div>
+                <div class="data-line"><span class="val">MAX205090</span><div class="copy-pill" onclick="copy('MAX205090', this)">COPY</div></div>
             </div>
         </div>
     </div>
 
     <script>
-        // TAB NAVIGATION
-        function nav(id, btn) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+        // NAVIGATION ENGINE
+        function tab(id, el) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            btn.classList.add('active');
+            el.classList.add('active');
         }
 
-        // ACCORDION TOGGLE
-        function toggleNode(id) {
-            const el = document.getElementById(id);
-            const isVisible = el.style.display === 'block';
-            document.querySelectorAll('.creds-drawer').forEach(d => d.style.display = 'none');
-            el.style.display = isVisible ? 'none' : 'block';
+        // ACCORDION REVEAL
+        function reveal(id) {
+            const box = document.getElementById(id);
+            const isOpen = box.style.display === 'block';
+            document.querySelectorAll('.data-box').forEach(b => b.style.display = 'none');
+            box.style.display = isOpen ? 'none' : 'block';
         }
 
-        // UNIVERSAL COPY ENGINE
-        function doCopy(text, btn) {
+        // CLIPBOARD ENGINE
+        function copy(text, btn) {
             navigator.clipboard.writeText(text).then(() => {
                 const original = btn.innerText;
-                btn.innerText = "DONE";
+                btn.innerText = "COPIED";
                 btn.style.background = "#d946ef";
-                btn.style.color = "white";
+                btn.style.color = "#fff";
                 setTimeout(() => {
                     btn.innerText = original;
-                    btn.style.background = "white";
+                    btn.style.background = "#fff";
                     btn.style.color = "#d946ef";
                 }, 1000);
             });
