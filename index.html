@@ -3,191 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS // PREMIUM</title>
-
-    <script src="https://pl28779890.effectivegatecpm.com/3d/3f/59/3d3f59e05461846fed6dcf8736f774ca.js"></script>
-
-    <script src="https://apewirelessdiscard.com/54/0f/c7/540fc77f1a432918bb7de165a7ddec18.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    
+    <title>Tej Pratap | Profile</title>
     <style>
         :root { 
-            --accent: #d946ef; --bg: #0f172a; --card: #1e293b; 
-            --text: #f8fafc; --dim: #94a3b8; --border: #334155;
+            --primary: #2563eb; 
+            --bg: #ffffff; 
+            --accent: #f8fafc;
+            --text: #1e293b;
         }
 
-        * { box-sizing: border-box; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text); margin: 0; line-height: 1.6; background-color: #f1f5f9; }
         
-        /* Global interaction wrapper for ads */
-        body { 
-            margin: 0; background: var(--bg); color: var(--text); 
-            font-family: 'Inter', sans-serif; display: flex; height: 100vh; 
-            overflow: hidden; cursor: pointer; 
+        header {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        /* SIDEBAR */
-        .sidebar { width: 260px; background: #000; border-right: 1px solid var(--border); padding: 40px 20px; display: flex; flex-direction: column; }
-        .logo { font-size: 22px; font-weight: 900; letter-spacing: -1px; margin-bottom: 50px; }
-        .logo span { color: var(--accent); }
-        
-        .nav-item { 
-            padding: 14px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; 
-            color: var(--dim); margin-bottom: 8px; font-size: 14px;
-        }
-        .nav-item:hover { color: var(--text); background: var(--card); }
-        .nav-item.active { background: var(--accent); color: #fff; }
+        .container { max-width: 900px; margin: -3rem auto 3rem; padding: 0 1.5rem; }
 
-        /* CONTENT AREA */
-        .main-stage { flex: 1; padding: 50px 70px; overflow-y: auto; }
-        .tab-view { display: none; }
-        .tab-view.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        section {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
 
-        /* NODES DESIGN */
-        .cat-label { font-size: 10px; font-weight: 800; color: var(--accent); letter-spacing: 1.5px; margin: 30px 0 12px 0; text-transform: uppercase; }
-        
-        .node-row { 
-            background: var(--card); border: 1px solid var(--border); border-radius: 12px; 
-            padding: 20px; margin-bottom: 10px; display: flex; 
-            align-items: center; justify-content: space-between;
-        }
-        .node-row:hover { border-color: var(--accent); background: #2d3748; }
-        
-        .node-meta { display: flex; align-items: center; gap: 12px; }
-        .status-dot { height: 7px; width: 7px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; }
-        .node-title { font-weight: 700; font-size: 14px; }
-        
-        /* DATA REVEAL */
-        .data-panel { 
-            display: none; background: #000; border: 1px solid var(--border); 
-            border-radius: 10px; padding: 15px; margin: -5px 0 15px 0;
-        }
-        .data-entry { display: flex; justify-content: space-between; align-items: center; margin: 6px 0; }
-        .code-val { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--dim); }
-        
-        .copy-trigger { 
-            font-size: 9px; font-weight: 900; color: var(--accent); 
-            cursor: pointer; border: 1px solid var(--accent); padding: 4px 10px; border-radius: 4px;
-        }
-        .copy-trigger:hover { background: var(--accent); color: #fff; }
+        h2 { color: var(--primary); display: flex; align-items: center; gap: 10px; margin-top: 0; }
 
-        /* AD CONTAINERS */
-        .ad-container { margin: 40px 0; display: flex; justify-content: center; width: 100%; }
+        /* Map Styling */
+        .map-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            margin-top: 15px;
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+
+        .location-info { margin-bottom: 15px; font-weight: 500; }
+
+        /* Details Styling */
+        #filterInput {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        #filterInput:focus { border-color: var(--primary); outline: none; }
+
+        .item-list { list-style: none; padding: 0; }
+        .item-list li { 
+            background: var(--accent); 
+            margin: 8px 0; 
+            padding: 12px 18px; 
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            border-left: 4px solid var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            .item-list li { flex-direction: column; }
+        }
     </style>
 </head>
-<body onclick="void(0)"> <div class="sidebar">
-        <div class="logo">NEXUS<span>.IO</span></div>
-        <div class="nav-item active" onclick="switchTab('mon', this)">System Monitor</div>
-        <div class="nav-item" onclick="switchTab('nod', this)">Premium Nodes</div>
-        
-        <div style="flex: 1;"></div>
-        <a href="https://apewirelessdiscard.com/u9eri7xh?key=ce72731044b30d34e5fbe3936ae2a11f" target="_blank" style="text-decoration:none">
-            <div style="background: var(--accent); color:#fff; padding:15px; border-radius:10px; text-align:center; font-weight:900; font-size:11px;">
-                UNLOCK UNLIMITED NODES
-            </div>
-        </a>
-    </div>
+<body>
 
-    <div class="main-stage">
-        
-        <div id="mon" class="tab-view active">
-            <h1 style="font-size: 4rem; margin:0; letter-spacing: -3px; font-weight: 900;">Core Online</h1>
-            <p style="color: var(--dim); font-size: 1.1rem; margin-bottom: 40px;">Infrastructure verified. 94+ Nodes operational.</p>
+<header>
+    <h1>Tej Pratap</h1>
+    <p>Professional Teacher | Tech Enthusiast</p>
+</header>
 
-            <div class="ad-container">
-                <script>
-                  atOptions = { 'key' : 'f20c994e03745038bbe30c131aff9c70', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
-                </script>
-                <script src="https://apewirelessdiscard.com/f20c994e03745038bbe30c131aff9c70/invoke.js"></script>
-            </div>
-
-            <div style="background: var(--card); padding: 30px; border-radius: 16px; border: 1px solid var(--border);">
-                <h3 style="margin:0; color: var(--accent);">Network Status: Optimized</h3>
-                <p style="color: var(--dim); font-size: 13px; margin-top: 10px;">Monetization synced. All high-yield ad layers injected successfully.</p>
-            </div>
+<div class="container">
+    <section id="my-location">
+        <h2>📍 My Location</h2>
+        <div class="location-info">
+            <strong>Current Residence:</strong> Kumar Khand, Bihar 852112, India
         </div>
-
-        <div id="nod" class="tab-view">
-            
-            <div class="cat-label">Entertainment // AHA</div>
-            <div class="node-row" onclick="openNode('aha')">
-                <div class="node-meta"><div class="status-dot"></div><div class="node-title">AHA Premium Node #1</div></div>
-                <div style="font-size:10px; color:#22c55e; font-weight:800;">2027 EXPIRY</div>
-            </div>
-            <div id="aha" class="data-panel">
-                <div class="data-entry"><span class="code-val">nithin6_3@yahoo.co.in</span><div class="copy-trigger" onclick="runCopy('nithin6_3@yahoo.co.in', this)">COPY</div></div>
-                <div class="data-entry"><span class="code-val">123456</span><div class="copy-trigger" onclick="runCopy('123456', this)">COPY</div></div>
-            </div>
-
-            <div class="cat-label">Gaming // XBOX</div>
-            <div class="node-row" onclick="openNode('xb1')">
-                <div class="node-meta"><div class="status-dot"></div><div class="node-title">Xbox: Microsoft 365 Family</div></div>
-                <div style="font-size:10px; color:#22c55e; font-weight:800;">ACTIVE</div>
-            </div>
-            <div id="xb1" class="data-panel">
-                <div class="data-entry"><span class="code-val">erolergul_snp@hotmail.com</span><div class="copy-trigger" onclick="runCopy('erolergul_snp@hotmail.com', this)">COPY</div></div>
-                <div class="data-entry"><span class="code-val">erlergl1.</span><div class="copy-trigger" onclick="runCopy('erlergl1.', this)">COPY</div></div>
-            </div>
-
-            <div class="node-row" onclick="openNode('xb2')">
-                <div class="node-meta"><div class="status-dot"></div><div class="node-title">Xbox: Live Gold 12M</div></div>
-            </div>
-            <div id="xb2" class="data-panel">
-                <div class="data-entry"><span class="code-val">wilton.oliveira0510@hotmail.com</span><div class="copy-trigger" onclick="runCopy('wilton.oliveira0510@hotmail.com', this)">COPY</div></div>
-                <div class="data-entry"><span class="code-val">Tricolor@2028</span><div class="copy-trigger" onclick="runCopy('Tricolor@2028', this)">COPY</div></div>
-            </div>
-
-            <div class="ad-container">
-                <script async="async" data-cfasync="false" src="https://apewirelessdiscard.com/76274c2418c5ab60df5b281a0bcb4011/invoke.js"></script>
-                <div id="container-76274c2418c5ab60df5b281a0bcb4011"></div>
-            </div>
-
-            <div class="cat-label">Creative // CAPCUT PRO</div>
-            <div class="node-row" onclick="openNode('cc')">
-                <div class="node-meta"><div class="status-dot" style="background:var(--accent); box-shadow: 0 0 10px var(--accent);"></div><div class="node-title">CapCut Pro Node</div></div>
-            </div>
-            <div id="cc" class="data-panel">
-                <div class="data-entry"><span class="code-val">col.schilling@gmail.com</span><div class="copy-trigger" onclick="runCopy('col.schilling@gmail.com', this)">COPY</div></div>
-                <div class="data-entry"><span class="code-val">120901</span><div class="copy-trigger" onclick="runCopy('120901', this)">COPY</div></div>
-            </div>
-
-            <div class="cat-label">Anime // CRUNCHYROLL</div>
-            <div class="node-row" onclick="openNode('cr')">
-                <div class="node-meta"><div class="status-dot"></div><div class="node-title">Crunchyroll Elite</div></div>
-            </div>
-            <div id="cr" class="data-panel">
-                <div class="data-entry"><span class="code-val">hgbtzmnyv@mik3y.pro</span><div class="copy-trigger" onclick="runCopy('hgbtzmnyv@mik3y.pro', this)">COPY</div></div>
-                <div class="data-entry"><span class="code-val">MAX205090</span><div class="copy-trigger" onclick="runCopy('MAX205090', this)">COPY</div></div>
-            </div>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14353.472147137812!2d86.95356555!3d25.923055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef364720aa812f%3A0xad72014bc9ee94f2!2sKumar%20Khand%2C%20Bihar%20852112!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // TAB LOGIC
-        function switchTab(id, el) {
-            document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            el.classList.add('active');
-        }
+    <section id="details">
+        <h2>📄 Personal Details</h2>
+        <input type="text" id="filterInput" placeholder="Search skills, email, or info..." onkeyup="filterDetails()">
+        <ul class="item-list" id="detailsList">
+            </ul>
+    </section>
+</div>
 
-        // ACCORDION LOGIC
-        function openNode(id) {
-            const panel = document.getElementById(id);
-            const isOpen = panel.style.display === 'block';
-            document.querySelectorAll('.data-panel').forEach(p => p.style.display = 'none');
-            panel.style.display = isOpen ? 'none' : 'block';
-        }
+<script>
+    const myDetails = [
+        { label: "Full Name", value: "TEJ PRATAP" },
+        { label: "Email", value: "sonukumarakela7654@gmail.com" },
+        { label: "Main Skill", value: "Teaching" },
+        { label: "Interests", value: "Traveling" },
+        { label: "Experience", value: "5+ Years in Tech/Education" }
+    ];
 
-        // COPY LOGIC
-        function runCopy(text, btn) {
-            navigator.clipboard.writeText(text).then(() => {
-                const old = btn.innerText;
-                btn.innerText = "SUCCESS";
-                setTimeout(() => { btn.innerText = old; }, 1000);
-            });
-        }
-    </script>
+    function renderDetails(data) {
+        const list = document.getElementById('detailsList');
+        list.innerHTML = data.map(item => `
+            <li>
+                <strong>${item.label}</strong>
+                <span>${item.value}</span>
+            </li>
+        `).join('');
+    }
+
+    function filterDetails() {
+        const query = document.getElementById('filterInput').value.toLowerCase();
+        const filtered = myDetails.filter(d => 
+            d.label.toLowerCase().includes(query) || 
+            d.value.toLowerCase().includes(query)
+        );
+        renderDetails(filtered);
+    }
+
+    renderDetails(myDetails);
+</script>
+
 </body>
 </html>
